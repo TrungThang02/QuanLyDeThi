@@ -1,0 +1,95 @@
+﻿
+@{
+    ViewBag.Title = "UnapprovedReports";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+@model List<QuanLyDeThi.Models.Exam>
+@{
+    ViewBag.Title = "Duyệt đề thi";
+}
+
+<h4>Phê duyệt đề thi</h4>
+
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>Tên đề thi</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var report in Model)
+        {
+            <tr>
+                <td width="500px">@report.ExamName</td>
+
+
+                <td>
+                    <a href="/Home/CheckTypeFile/@report.ExamID" class="btn btn-info">Chi tiết</a>
+                    @*@Html.ActionLink("Chi tiết", "Details", new { id = report.ExamID }, new { @class = "btn btn-info" })*@
+                    <a data-id="@report.ExamID" class="btn btn-danger delete">Xóa</a>
+                    <a data-id="@report.ExamID" class="btn btn-success app">Duyệt</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>const btnDelete = document.querySelectorAll('.delete');
+    const btnApp = document.querySelectorAll('.app');
+    btnDelete.forEach(btn => {
+        btn.addEventListener('click', (event) => {
+            var id = btn.dataset.id;
+            event.preventDefault();
+
+            Swal.fire({
+                title: 'Bạn có chắc chắn muốn xóa ?',
+                text: "Nếu bạn xóa bạn không thể khôi phục lại!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText: 'Hủy',
+                confirmButtonText: 'Xóa'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Xóa thành công'
+                    )
+                    window.location.href = "/Exams/Delete/" + id;
+                }
+            })
+        });
+    });
+
+
+    btnApp.forEach(btn => {
+        btn.addEventListener('click', (event) => {
+            var id = btn.dataset.id;
+            event.preventDefault();
+
+            Swal.fire({
+                title: 'Duyệt đề thi này ?',
+  /*              text: "Nếu bạn xóa bạn không thể khôi phục lại!",*/
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText: 'Hủy',
+                confirmButtonText: 'Duyệt'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Đã duyệt'
+                    )
+                    window.location.href = "/Admin/Exams/ApproveDocument/" + id;
+                }
+            })
+        });
+    });</script>

@@ -1,0 +1,210 @@
+﻿
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<script src="~/ViewerJS/compatibility.js"></script>
+<link href="~/ViewerJS/example.local.css" rel="stylesheet" />
+<script src="~/ViewerJS/pdf.js"></script>
+<script src="~/ViewerJS/pdf.worker.js"></script>
+<script src="~/ViewerJS/pdfjsversion.js"></script>
+<script src="~/ViewerJS/text_layer_builder.js"></script>
+<script src="~/ViewerJS/ui_utils.js"></script>
+<script src="~/ViewerJS/webodf.js"></script>
+
+<style>
+    .bgn {
+        background: #005180;
+        text-align: center;
+        font-weight: bold;
+        text-transform: uppercase;
+        /* background: #282f3a; */
+        color: #fff;
+        line-height: 2.5rem;
+        margin: -12px -12px 10px -12px;
+        border-radius: 10px 10px 0 0;
+    }
+
+    /*        body, html, p {
+                font-family: "Montserrat", sans-serif;
+            }
+    */
+
+
+    .float-lg-none {
+        scroll-behavior: smooth;
+        height: fit-content;
+    }
+
+    .media-body a {
+        font-family: 'Segoe UI';
+        font-size: 15px;
+        font-weight: 500;
+        text-transform: capitalize;
+    }
+
+    .media-body {
+        margin: 5px;
+    }
+
+    .header-one .logo-area {
+        padding-top: 20px;
+    }
+
+    .logo img {
+        width: 120px;
+        height: auto;
+    }
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://trungthang02.github.io/test/bc.css">
+<div class="content-wrapper">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card-body">
+                <div>
+                    @*<div class="breadcrumb">
+
+                        <a href="@Url.Action("Index", "Exam")" class="breadcrumb-item" style="color:blue !important">Trang chủ </a>/
+                        @if (ViewBag.CurrentUrl != null)
+                        {
+                            var urls = ViewBag.CurrentUrl.Split('/');
+                            var controller = urls[3];
+                            var action = urls[4];
+                            <a href="@Url.Action(action, controller)"> Xem Tài liệu</a>
+                        }
+
+                    </div>*@
+
+                </div>
+                <div class="row">
+                    <div class="col-lg-9">
+                        <div class="display-4 text-capitalize mb-2 font-weight-bold" style="color:#333">@Model.ExamName</div>
+                        <div class="row">
+                            <ul class="list-inline col-12 d-flex justify-content-between flex-wrap mb-0">
+
+
+                                <li class="list-inline-item">
+                                    <i class="ti-user icon-sm text-success" style="vertical-align: -2px;"></i>
+                                    Tác giả: <a href="#" class="text-capitalize">@Model.Author</a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <i class="ti-user icon-sm text-success" style="vertical-align: -2px;"></i>
+                                    <p><i class="fa-regular fa-eye"></i> @Model.ViewCount</p>
+                                </li>
+                                <li class="list-inline-item">
+                                    <i class="ti-user icon-sm text-success" style="vertical-align: -2px;"></i>
+                                    <p><i class="fa-solid fa-download"></i> @Model.DownloadCount</p>
+                                </li>
+                                <li class="list-inline-item">
+                                    <i class="ti-time icon-sm text-success" style="vertical-align: -2px;"></i>
+                                    Ngày đăng: @Model.UploadDate
+                                </li>
+                            </ul>
+                        </div>
+
+
+                        @*<iframe src='https://view.officeapps.live.com/op/embed.aspx?src=https://localhost:44337/File/@Model.UrlFile' width="100%" height="800px" frameborder='0'></iframe>*@
+                        <iframe src='https://view.officeapps.live.com/op/embed.aspx?src=http://trungthangnckh-001-site1.dtempurl.com/File/@Model.UrlFile' width="100%" height="800px" frameborder='0'></iframe>
+                        <div>
+                            <h4 class="text-primary font-weight-bold text-uppercase mt-3">Mô Tả</h4>
+                            <p>@Model.Description</p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+
+                        <button class="btn btn-danger btn-rounded mb-3 btn-icon-text btn-block text-capitalize"><i class="fa-solid fa-download"></i><a href="~/Documents/DownloadFile?filePath=@Model.UrlFile" style="color:#fff"> Tải xuống</a></button>
+
+                        <style>
+                            .share {
+                                padding: 5px;
+                                margin-bottom: 1rem;
+                                display: flex;
+                                justify-content: space-around;
+                                align-items: center;
+                            }
+
+                            .mxh {
+                                display: flex;
+                                justify-content: space-between;
+                            }
+
+                            .item {
+                                background: #333;
+                                margin-right: 20px;
+                                border-radius: 50%;
+                            }
+
+                                .item a i {
+                                    padding: 8px;
+                                    color: #fff;
+                                    font-size: 20px;
+                                }
+
+                            .a {
+                                background: #2374e1;
+                            }
+
+                            .d {
+                                background: #1d9bf0;
+                            }
+
+                            .c {
+                                background: rgb(10,102,194);
+                            }
+
+                            .n a:hover {
+                                cursor: unset;
+                            }
+                        </style>
+                        <div class="share">
+
+
+
+                            <div class="mxh">
+                                <div class="item n">
+                                    <a href="#">
+                                        <i class="fa-solid fa-share"></i>
+                                    </a>
+                                </div>
+                                <div class="item a">
+                                    <a href="https://www.facebook.com/sharer/sharer.php?u=@Url.Action("View", "Documents", new { id = Model.ExamID }, Request.Url.Scheme)">
+                                        <i class="fa-brands fa-facebook"></i>
+                                    </a>
+                                </div>
+                                <div class="item d">
+                                    <a href="https://twitter.com/intent/tweet?url=@Url.Action("View", "Documents", new { id = Model.ExamID }, Request.Url.Scheme)&text=@Model.GraduationReportName">
+                                        <i class="fa-brands fa-twitter"></i>
+                                    </a>
+                                </div>
+                                <div class="item c">
+                                    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=@Url.Action("View", "Documents", new { id = Model.ExamID }, Request.Url.Scheme)&amp;title=@Model.GraduationReportName&amp;summary=@Model.Description&amp;source=https://localhost:44337/Documents/XemBaoCao/">
+                                        <i class="fa-brands fa-linkedin"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="relate-doc col-lg-12 col-sm-5 float-lg-none float-sm-left">
+                            <div class="bgn">
+                                <div class="glow"></div>ĐỀ THI MỚI NHẤT
+                            </div>
+
+
+                            @Html.Action("DeThiMoiNhat", "Home")
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+

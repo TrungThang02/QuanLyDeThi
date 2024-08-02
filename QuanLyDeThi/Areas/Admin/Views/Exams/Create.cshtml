@@ -1,0 +1,128 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<style>
+    .file {
+        display: flex;
+        margin: 10px;
+        justify-content: space-around;
+    }
+
+    .form-control {
+        border-radius: 8px;
+    }
+
+        .form-control[type=file]:not(:disabled):not([readonly]) {
+            height: 100px;
+        }
+</style>
+<div>
+    <h4 align="center">Thêm mới đề thi</h4>
+    @*Thêm thuộc tính cho form để upload ảnh*@
+    @using (Html.BeginForm("Create", "Exams", FormMethod.Post, new
+    {
+        @enctype = "multipart/form-data"
+    }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group file">
+
+
+                <div class="col-md-5">
+                    <label class="control-label">Tên đề thi:</label>
+                    <input type="text" size="70" name="sTenSach" value="@ViewBag.TenSach" class="form-control"
+                           required />
+                </div>
+
+
+
+                <div class="col-md-5">
+                    <label class="control-label">Mô tả:</label>
+                    <textarea name="sMoTa" id="mytextarea" class="form-control">@ViewBag.MoTa</textarea>
+                </div>
+
+            </div>
+            <div class="form-group file">
+
+
+                <div class="col-md-5">
+                    <label class="control-label">Ảnh bìa:</label>
+                    <input type="file" name="image" class="form-control" />
+                    @*Thông báo lỗi yêu cầu phải chọn ảnh bìa*@
+                    @ViewBag.ThongBao
+                </div>
+
+
+
+                <div class="col-md-5">
+                    <label class="control-label">File đề thi:</label>
+                    <input type="file" name="file" class="form-control" />
+                    @*Thông báo lỗi yêu cầu phải chọn ảnh bìa*@
+                    @ViewBag.ThongBao
+                    <p>LƯU Ý : Chỉ được up file tài liệu < 20.MB !</p>
+                </div>
+
+
+            </div>
+            <div class="form-group file">
+
+                <div class="col-md-5">
+                    <label class="control-label">Ngày tải lên:</label>
+                    <input type="date" name="dNgayCapNhat" required class="form-control" />
+                </div>
+
+
+                <div class="col-md-5">
+                    <label class="control-label">Môn học:</label>
+                    @*Hiển thị ViewBag.MaCD vào dropdownlist*@
+                    @Html.DropDownList("SubjectID", null, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group file">
+
+                <div class="col-md-5">
+                    <label class="control-label">Lớp: </label>
+                    @Html.DropDownList("ClassID", null, new { @class = "form-control" })
+                </div>
+
+                <div class="col-md-5">
+                    <label class="control-label">Từ khóa:</label>
+                    <input type="text" size="70" name="sKeyword" value="" class="form-control"
+                           required />
+                </div>
+            </div>
+
+            <div class="form-group file">
+
+                
+            </div>
+            <div class="form-group file">
+
+                <div class="col-md-11">
+                    <label class="control-label">Tác giả:</label>
+                    <input type="text" size="70" name="tentacgia" value="" class="form-control"
+                           required />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-12">
+                    <center>
+                        <input type="submit" value="Thêm mới" class="btn btn-primary" />
+                    </center>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>

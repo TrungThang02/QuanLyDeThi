@@ -1,0 +1,71 @@
+﻿@{
+    ViewBag.Title = "Thaydoithongtin";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+@model QuanLyDeThi.Models.Users
+<style>
+    h4 {
+        padding: 10px;
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="card rounded-3 shadow">
+        <div class="card-body">
+            <h4 class="card-title text-center">Chỉnh sửa thông tin cá nhân</h4>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            @Html.HiddenFor(model => model.ID)
+                            @Html.HiddenFor(model => model.PassWord)
+                            @Html.HiddenFor(model => model.UserName)
+
+                            <label class="form-label">Họ và tên</label>
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Tuổi</label>
+                            @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Địa chỉ</label>
+                            @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Số điện thoại</label>
+                            @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="mb-3">
+                            <a href="@Url.Action("ForgotPassword", "User")" class="btn btn-link" style="font-weight:bold; color :#3b5998">Đổi mật khẩu</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3 text-center">
+                    <input type="submit" value="Lưu thông tin" class="btn btn-success" />
+                </div>
+            }
+        </div>
+    </div>
+</div>

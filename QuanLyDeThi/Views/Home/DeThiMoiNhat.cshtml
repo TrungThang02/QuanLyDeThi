@@ -1,0 +1,14 @@
+﻿@foreach (var d in Model)
+{
+    <div class="media mb-1">
+        <i class="ti-zip icon-md text-primary d-flex align-self-start mr-3"></i>
+        <div class="media-body">
+            <a href="/Home/XemBaoCao/@d.ExamID" class="text-dark">@d.ExamName</a>
+            <div class="d-flex justify-content-between">
+                <small><i class="fa-regular fa-eye mr-1"></i>@d.ViewCount</small>
+                <small><i class="fa-solid fa-download mr-1"></i>@d.DownloadCount</small>
+            </div>
+        </div>
+    </div>
+    <hr class="my-1">
+}

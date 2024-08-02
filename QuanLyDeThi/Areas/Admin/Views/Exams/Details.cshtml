@@ -1,0 +1,55 @@
+﻿@model QuanLyDeThi.Models.Exam
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2 class="text-center">Chi tiết đề thi</h2>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <img src="@Url.Content("~/Content/images/AnhBaoCao/" + Model.Image)" class="card-img-top" alt="Ảnh đề thi">
+                <div class="card-body">
+                    <h5 class="card-title">@Model.ExamName</h5>
+                    <p class="card-text">@Model.Description</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <dl class="dl-horizontal">
+                <dt>Tác giả:</dt>
+                <dd>@Model.Author</dd>
+
+                <dt>File đề thi:</dt>
+                <dd><a href="@Url.Content("~/File/" + Model.UrlFile)" target="_blank">Download</a></dd>
+
+                <dt>Môn học:</dt>
+                <dd>@Model.Subject.SubjectName</dd>
+
+                <dt>Lớp:</dt>
+                <dd>@Model.Class.ClassName</dd>
+
+                <dt>Ngày tải lên:</dt>
+                <dd>@Model.UploadDate</dd>
+
+                @*<dt>Trạng thái:</dt>
+                <dd>@(Model.Status == 1 ? "Hoạt động" : "Ngừng hoạt động")</dd>*@
+
+                <dt>Từ khóa:</dt>
+                <dd>@Model.Keyword</dd>
+
+                @*<dt>Người tạo:</dt>
+                <dd>@Model.Users.Name</dd>
+            </dl>*@
+        </div>
+    </div>
+
+    <div class="text-center mt-3">
+        @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.ExamID }, new { @class = "btn btn-primary mr-3" })
+        @Html.ActionLink("Quay lại danh sách", "Index", new { id = Model.ExamID }, new { @class = "btn btn-secondary" })
+    </div>
+</div>

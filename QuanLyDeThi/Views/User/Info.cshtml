@@ -1,0 +1,302 @@
+﻿
+@using PagedList.Mvc;
+
+
+@{
+    ViewBag.Title = "Quanlibaocao";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+@{ var id = Session["TaiKhoan3"];
+
+    var name = Session["TaiKhoan2"];
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style>
+        .card {
+            --bg: #f7f7f8;
+            --hover-bg: #f3f3f3;
+            --hover-text: #E50087;
+            width: 200px;
+            height: 250px;
+            text-align: center;
+            box-shadow: rgba(0, 0, 0, 0.5) 0px 1px 2px 0px;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            transition: .3s cubic-bezier(.6,.4,0,1),transform .15s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1em;
+            margin: 10px;
+        }
+
+        .card__body {
+            color: #464853;
+            line-height: 1.5em;
+            font-size: 1em;
+            color: #fff;
+        }
+
+        .text {
+            display: flex;
+            height: 70px;
+            background: #f3f3f3;
+            display: flex;
+            color: #333;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card > :not(span) {
+            transition: .3s cubic-bezier(.6,.4,0,1);
+        }
+
+        .card > strong {
+            display: block;
+            font-size: 1.4rem;
+            letter-spacing: -.035em;
+        }
+
+        .card span {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--hover-text);
+            border-radius: 5px;
+            font-weight: bold;
+            top: 100%;
+            transition: all .3s cubic-bezier(.6,.4,0,1);
+        }
+
+        .card:hover span {
+            top: 0;
+            font-size: 1.2em;
+        }
+
+        .card:hover {
+            background: var(--hover-bg);
+        }
+
+            .card:hover > div, .card:hover > strong {
+                opacity: 0;
+            }
+
+        .product-image img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .product-image {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .btn-hover i {
+            background: #00ff7f;
+            padding: 10px;
+            margin: 4px;
+            box-shadow: rgba(0, 0, 0, 0.5) 0px 1px 2px 0px;
+            border-radius: 50%;
+            color: #fff;
+        }
+
+        .b i {
+            background: red;
+        }
+
+        .f i {
+            background: #248afd;
+        }
+
+        .text p {
+            font-size: 14px;
+            width: 180px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    </style>
+    <style>
+
+        .items {
+            margin: 10px 0 20px 0;
+            border-radius: 8px;
+            align-items: center;
+            padding: 10px;
+            background: #248afd;
+            color: #fff;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .info-item {
+            background: #f3f3f3;
+            display: flex;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .info {
+            width: 100%;
+        }
+
+        hr {
+            margin: 0;
+        }
+
+        .clearfix {
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-2 mb-2">
+        <div class="info-item">
+            <div class="info col-lg-3">
+                <div class="d">
+                    <center>
+                        <img src="https://cdn-icons-png.flaticon.com/512/6596/6596121.png" alt="Alternate Text" width="150px" />
+                    </center>
+                    <h5 align="center">@name</h5>
+                </div>
+                <div class="d">
+                    <div class="items"><a href="/User/Thaydoithongtin/@id">Cập nhật thông tin</a></div>
+
+                </div>
+                <hr />
+                <div>
+                    <div class="py-3">
+                        <p class="clearfix">
+                            <span class="float-left">
+                                Tổng số đề thi
+                            </span>
+                            <span class="float-right">
+                                @ViewBag.totalReport
+                            </span>
+                        </p>
+                        <p class="clearfix">
+                            <span class="float-left">
+                                Lượt xem
+                            </span>
+                            <span class="float-right">
+                                @ViewBag.totalView
+                            </span>
+                        </p>
+                        <p class="clearfix">
+                            <span class="float-left">
+                                Tải xuống
+                            </span>
+                            <span class="float-right">
+                                @ViewBag.totalDown
+                            </span>
+                        </p>
+                    </div>
+
+                    <div class="d">
+                        <div class="items"><a href="/Home/Create">Tải lên đề thi</a></div>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <div class="row justify-content-center col-lg-9">
+                <div class="alert alert-primary" role="alert" style="width : 100%; align-items :center; height: fit-content">
+                    Bạn có <a href="/User/Pending/@id" class="alert-link"><b>  @ViewBag.pending đề thi </b></a>đang đợi duyệt !
+                </div>
+                @foreach (var dt in Model)
+                {
+                    <div class="card">
+                        <div class="card__body">
+                            <div class="product-image">
+                                <img src="~/Content/images/AnhBaoCao/@dt.Image">
+                            </div>
+                            <div class="text">
+                                <p>@dt.ExamName</p>
+                            </div>
+
+                        </div>
+                        <span class="edit">
+                            <div class="btn-hover f">
+                                <a href="/Home/CheckTypeFile/@dt.ExamID"><i class="fa-solid fa-eye"></i></a>
+                            </div>
+                            <div class="btn-hover">
+                                <a href="/Home/Edit/@dt.ExamID"><i class="fa-solid fa-pen a"></i></a>
+                            </div>
+                            <div class="btn-hover b">
+                                <a data-id="@dt.ExamID" class="delete"><i class="fa-sharp fa-solid fa-circle-xmark b"></i></a>
+                            </div>
+                        </span>
+                    </div>
+                }
+                <div class="list">
+                    <div class="MenuTrang">
+                        @*@Html.PagedListPager(Model, page => Url.Action("Info", "User", new { page = page }))*@
+                    </div>
+                </div>
+                <style>
+                    .MenuTrang {
+                        margin-top: 500px;
+                        display: inline;
+                        text-align: center;
+                        width: 100%;
+                    }
+                </style>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+<script>const btnDelete = document.querySelectorAll('.delete');
+
+    btnDelete.forEach(btn => {
+        btn.addEventListener('click', (event) => {
+            var id = btn.dataset.id;
+            event.preventDefault();
+
+            Swal.fire({
+                title: 'Bạn có chắc chắn muốn xóa ?',
+                text: "Nếu bạn xóa bạn không thể khôi phục lại!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText: 'Hủy',
+                confirmButtonText: 'Xóa'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Xóa thành công'
+                    )
+                    window.location.href = "/Home/Delete/" + id;
+                }
+            })
+        });
+    });</script>
+

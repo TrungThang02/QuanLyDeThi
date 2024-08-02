@@ -1,0 +1,41 @@
+﻿<style>
+    .file {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .searchInput {
+        border-radius: 5px 0 0 5px;
+    }
+
+    .options {
+        border-radius: 0;
+    }
+
+    .fit {
+        width: 100%;
+        max-width: 330px;
+        height: 45px;
+    }
+</style>
+
+@using (Html.BeginForm("SearchCategory", "Home", FormMethod.Get, new { @class = "" }))
+{
+    <div class="input-group file">
+        <input type="text" class="form-control searchInput" value="@ViewBag.tukhoa" name="searchString" placeholder="Nhập thông tin tìm kiếm (Nhan đề, tác giả, Từ khóa...)" style="background: #fff; text-align: center">
+
+
+
+        <div class="input-group-append options">
+            @Html.DropDownList("ClassID", null, htmlAttributes: new { @class = "btn btn-info dropdown-toggle text-uppercase fit" })
+        </div>
+        <div class="input-group-append options">
+            @Html.DropDownList("CategoryID", null, htmlAttributes: new { @class = "btn btn-info dropdown-toggle text-uppercase fit" })
+        </div>
+        <div class="input-group-append">
+            <input class="btn btn-secondary fit" type="submit" value="TÌM ĐỀ THI">
+        </div>
+    </div>
+}

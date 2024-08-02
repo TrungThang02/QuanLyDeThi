@@ -1,0 +1,879 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <title>ExamSystem - Hệ thống quản lý đề kiểm tra cho trường THCS Phú Hoà</title>
+
+    <!-- Mobile Specific Metas
+    ================================================== -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Construction Html5 Template">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Favicon
+    ================================================== -->
+    <link rel="icon" type="image/png" href="">
+
+    <!-- CSS
+    ================================================== -->
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="~/Content/plugins/bootstrap/bootstrap.min.css">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="~/Content/plugins/fontawesome/css/all.min.css">
+    <!-- Animation -->
+    <link rel="stylesheet" href="~/Content/plugins/animate-css/animate.css">
+    <!-- slick Carousel -->
+    <link rel="stylesheet" href="~/Content/plugins/slick/slick.css">
+    <link rel="stylesheet" href="~/Content/plugins/slick/slick-theme.css">
+    <!-- Colorbox -->
+    <link rel="stylesheet" href="~/Content/plugins/colorbox/colorbox.css">
+    <!-- Template styles-->
+    <link rel="stylesheet" href="~/Content/css/style.css">
+    <style>
+        hr {
+            background-color: #c6c6c6 !important;
+            height: 1px;
+            margin: 0;
+            margin-bottom: 2px;
+        }
+
+        .tieude {
+            font-weight: bold;
+        }
+
+        #navbar {
+            background-color: #333;
+            transition: 0.3s all ease-in;
+        }
+
+
+
+        .sticky {
+            z-index: 100000;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            transition: 0.5s all ease-in;
+        }
+
+            .sticky + .content {
+                padding-top: 60px;
+            }
+
+        @@media (prefers-reduced-motion: reduce) {
+            .fade {
+                transition: opacity 0.15s linear;
+            }
+        }
+
+        body,
+        p {
+            font-family: "Open Sans", sans-serif;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased !important;
+            /*    line-height: 26px;*/
+            font-size: 15px;
+            overflow: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            color: #212121;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased !important;
+        }
+
+        .header-one .logo-area {
+            padding-top: 20px;
+        }
+
+        .logo img {
+            width: 120px;
+            height: auto;
+        }
+        /* .banner-carousel-item {
+            background: url('https://blogger.googleusercontent.com/img/a/AVvXsEjCmVw1pDd5keMudTsQ63YTpLGunw7G3V382a-uIlS1N0-aUQ3eNlQvvKNt8EdNniOOpeXp_TUwLFAeHmvBQuLh32wQoj4cNKayu8OPhFB7tuAgVqxrvvRk-GqrW3hZnb_MtIigafYEZabCdWAn0jiDAljKo1tPCGa1nYMp2GGV9bUkb9t58ffzLcSLIQ=s16000');
+        }*/
+        .search-block .search-close {
+            background: #fff;
+            border-radius: 1px;
+            color: #007bff;
+        }
+
+            .search-block .search-close span {
+                color: #007bff;
+            }
+
+        .search-block {
+            padding: 10px;
+            background: #fff;
+        }
+
+            .search-block .form-control {
+                color: #007bff;
+                background: #fff;
+            }
+
+        .spancp {
+            font-size: 15px;
+        }
+
+        .section-sub-title {
+            margin: 0;
+        }
+        /*    body, p {
+            font-family: "Montserrat", sans-serif;
+        }*/
+        .copyright {
+            padding: 15px;
+        }
+
+        #back-to-top .btn.btn-primary {
+            background: #007bff;
+        }
+
+        .dm {
+            min-width: 270px;
+        }
+
+        .header-one ul.navbar-nav > li {
+            padding-right: 50px;
+        }
+
+        .header-one, .header-one .site-navigation {
+            background: none;
+        }
+
+        ul.navbar-nav > li > a {
+            padding: 5px;
+        }
+
+        .clients-logo img {
+            -webkit-filter: unset;
+        }
+
+        .subscribe {
+            background: #005180;
+        }
+
+        .ts-newsletter:after {
+            background: #005180;
+        }
+
+        .ts-newsletter {
+            border-radius: 0 0 40px 40px;
+            background: #fff;
+            color: #005180;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+        }
+
+        .newsletter-form input {
+            border-radius: 8px;
+            border: 1px solid #005180;
+        }
+
+        .pagination {
+            justify-content: center;
+        }
+
+            .pagination li a {
+                background: #007bff !important;
+                font-weight: bold;
+                padding: 5px 11px;
+                border-radius: 50% !important;
+            }
+
+        :root {
+            --main-color1: #eb4d4b;
+            --text-color: #131e2c;
+        }
+
+        .product-grid {
+            margin-bottom: 50px;
+            border-radius: 10px;
+            font-family: 'Oswald', sans-serif;
+            text-align: center;
+            transition-duration: .3s;
+            transition-property: transform;
+            transition-timing-function: ease-out;
+            /*border: 1px solid #333;*/
+            /*          height: 350px;*/
+            justify-content: center;
+            box-shadow: rgba(0, 0, 0, 0.5) 0px 1px 2px 0px;
+        }
+
+            .product-grid:hover {
+                box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(5, 115, 255, 1) 0px 0px 0px 1px;
+                /*  -webkit-transform: skewY(-0.5deg);
+            -moz-transform: skewY(-0.5deg);
+            transform: skewY(-0.5deg);
+            -webkit-backface-visibility: hidden;*/
+
+                transform: translateY(-20px);
+            }
+
+        .product-image {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 10px 10px 0 0;
+        }
+
+            .product-image a > img {
+                height: 250px;
+                width: 100%;
+                object-fit: cover;
+                border-radius: 10px 10px 0 0;
+                box-shadow: rgba(0, 0, 0, 0.5) 0px 1px 2px 0px;
+            }
+
+        .product-grid .product-content {
+            background: #f3f3f3;
+            border-radius: 0 0 10px 10px;
+        }
+
+
+        .product-grid .title {
+            color: var(--text-color);
+            font-size: 15px;
+            text-transform: capitalize;
+        }
+
+            .product-grid .title a {
+                color: var(--text-color);
+                transition: all 500ms;
+            }
+
+                .product-grid .title a:hover {
+                    color: var(--main-color1);
+                }
+
+        .product-grid .price {
+            color: var(--text-color);
+            font-size: 18px;
+            letter-spacing: 0.005em;
+            margin-bottom: 10px;
+        }
+
+            .product-grid .price span {
+                color: #a7a7a7;
+                font-size: 14px;
+                font-weight: 400;
+                text-decoration: line-through;
+            }
+
+        .product-grid .product-button-group {
+            position: relative;
+            z-index: 1;
+        }
+
+        .product-grid .add-to-cart {
+            color: var(--text-color);
+            background: #f4f4f4;
+            font-size: 14px;
+            width: calc(100% - 75px);
+            padding: 5px 3px;
+            margin: 0 auto;
+            display: inline-block;
+            transition: all 0.25s ease 0s;
+            border-radius: 5px;
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+        }
+
+            .product-grid .add-to-cart i {
+                margin-right: 8px;
+                display: none;
+                visibility: hidden;
+                transition: all 0.25s ease 0s;
+            }
+
+        .product-grid:hover .add-to-cart {
+            color: #fff;
+            background: var(--text-color);
+        }
+
+            .product-grid:hover .add-to-cart i {
+                display: inline-block;
+                visibility: visible;
+            }
+
+        .product-grid .product-like-icon,
+        .product-grid .product-compare-icon {
+            color: var(--text-color);
+            background: #f4f4f4;
+            line-height: 34px;
+            width: 34px;
+            height: 34px;
+            opacity: 0;
+            transform: translateY(-50%);
+            position: absolute;
+            top: 50%;
+            left: 50px;
+            z-index: -1;
+            transition: all 0.25s ease 0s;
+        }
+
+        .product-grid .product-compare-icon {
+            left: auto;
+            right: 50px;
+        }
+
+        .product-grid:hover .product-like-icon {
+            opacity: 1;
+            left: 0;
+        }
+
+        .product-grid:hover .product-compare-icon {
+            opacity: 1;
+            right: 0;
+        }
+
+        @@media only screen and (max-width:990px) {
+            .product-grid {
+                margin-bottom: 30px;
+            }
+        }
+
+        .text {
+            height: 70px;
+            align-items: center;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+        }
+
+        a:link, a:visited {
+            font-family: "Open Sans", sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .view {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 5px 5px 5px;
+            box-sizing: border-box;
+            margin: 0 20px 0 20px;
+        }
+
+        .sticky {
+            position: fixed;
+            top: 0;
+            width: 100%;
+        }
+
+        .text a {
+            width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: 23px;
+            -webkit-line-clamp: 3;
+            height: 68px;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+        }
+    </style>
+</head>
+<body>
+    <div id='af-preloader'>
+
+        <div class='af-preloader-wrap'>
+
+            <div class='af-sp af-sp-wave'></div>
+
+        </div>
+
+    </div>
+    <script>
+
+        window.addEventListener('load', function () {
+            document.getElementById('af-preloader').style.display = 'none'
+        })
+
+    </script>
+
+
+    <header id="header" class="header-one">
+        <div class="bg-white">
+            <div class="container">
+                <div class="logo-area">
+                    <div class="row align-items-center">
+                        <div class="logo col-lg-3 text-center text-lg-left mb-3 mb-md-5 mb-lg-0">
+                            <a class="d-block" href="/Home/Index">
+                                <img src="~/Content/images/logo.png" alt="Constra" class="logo-c" width="100px">
+                            </a>
+                        </div><!-- logo end -->
+
+                        <style>
+                            .in {
+                                float: right;
+                            }
+                        </style>
+                        <div class="col-lg-9">
+
+                           @Html.Action("LoginLogOutPartial", "User")
+
+
+                        </div> 
+                    </div><!-- logo area end -->
+
+                </div><!-- Row end -->
+            </div><!-- Container end -->
+        </div>
+        @*<marquee style="background:#fff ;padding:0;">Chào mừng bạn đến với hệ thống quản lý đề tài báo cáo tốt nghiệp sinh viên Đại học Thủ Dầu Một.</marquee>*@
+        <div class="site-navigation" style="background: #005180" id="navbar">
+            <div class="container">
+                <div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <nav class="navbar navbar-expand-lg navbar-dark p-0">
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"></span>
+                                </button>
+
+                                <div id="navbar-collapse" class="collapse navbar-collapse">
+                                    <ul class="nav navbar-nav mr-auto">
+                                        <li class="nav-item dropdown">
+                                            <a href="/Home/Index" class="nav-link">TRANG CHỦ</a>
+
+                                        </li>
+
+                                        <li class="nav-item dropdown">
+                                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">DANH MỤC ĐỀ THI <i class="fa fa-angle-down"></i></a>
+                                            <ul class="dropdown-menu dm" role="menu">
+
+                                                <li class="dropdown-submenu">
+                                                    <a href="#!" class="dropdown-toggle" data-toggle="dropdown">LỚP HỌC</a>
+                                                    <ul class="dropdown-menu dm">
+                                                        @Html.Action("Class", "Home")
+
+                                                    </ul>
+                                                </li>
+                                                <li class="dropdown-submenu">
+                                                    <a href="#!" class="dropdown-toggle" data-toggle="dropdown">MÔN HỌC</a>
+                                                    <ul class="dropdown-menu dm">
+                                                        @Html.Action("Subject", "Home")
+
+                                                    </ul>
+                                                </li>
+                                                @*<li class="dropdown-submenu">
+                    <a href="#!" class="dropdown-toggle" data-toggle="dropdown">NIÊN KHÓA</a>
+                    <ul class="dropdown-menu dm">
+                        @Html.Action("NienKhoa", "Home")
+
+                    </ul>
+
+                </li>*@
+                                            </ul>
+                                        </li>
+                      
+                                        <li class="nav-item"><a class="nav-link" href="/Home/About">GIỚI THIỆU </a></li>
+                                    </ul>
+                                </div>
+                            </nav>
+                        </div>
+                        <!--/ Col end -->
+                    </div>
+                </div>
+                <!--/ Row end -->
+
+                <div class="container">
+
+
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content start-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5>Tìm đề thi</h5>
+
+                                </div>
+                                <div class="modal-body">
+                                    <form action="/Home/Search" style="display: flex">
+
+
+                                        <input type="search" class="form-control" id="search-field" value="" placeholder="Bạn cần tìm gì...?" style="background: #fff" name="search">
+
+
+                                        <button type="submit" class="btn btn-primary form-control" style="width:150px">Tìm kiếm</button>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa-sharp fa-solid fa-circle-xmark"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="nav-search">
+                    <span id="search" data-toggle="modal" data-target="#myModal"><i class="fa fa-search" style="color : #fff"></i></span>
+
+                </div><!-- Search end -->
+
+
+            </div>
+        </div>
+        <!--/ Container end -->
+        <!--/ Navigation end -->
+    </header>
+    <!--/ Header end -->
+
+    <div class="banner-carousel banner-carousel-1 mb-0 content">
+        <div class="banner-carousel-item" style="background-image: linear-gradient(to right,#0008,#0008 ), url('https://img.freepik.com/free-photo/flat-lay-clean-office-desk_23-2148219267.jpg') ">
+            <div class="slider-content text-left">
+                <div class="container h-100">
+                    <div class="row align-items-center h-100">
+                        <div class="container">
+                            <div class="search-form" style=" padding: 60px; background: #fff5; border-radius: 15px; box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px; ">
+                                @Html.Action("K", "Home")
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        @RenderBody()
+    </div>
+    <style>
+        .bcgd {
+            width: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+            .bcgd h5 {
+                width: 250px;
+                align-items: center;
+                padding: 10px;
+                border-radius: 8px;
+                background: #007bff;
+                color: #fff;
+            }
+
+            li{
+                list-style: none;
+            }
+    </style>
+    <section id="news" class="news">
+        <div class="container">
+
+
+
+            <!--/ Title row end -->
+            <div class="bcgd">
+
+                <h5 class="text-center">XEM NHIỀU NHẤT</h5>
+            </div>
+            <div class="row">
+                @Html.Action("BaoCaoXemNhieu", "Home")
+            </div>
+            <div class="bcgd">
+
+                <h5 class="text-center">TẢI NHIỀU NHẤT</h5>
+            </div>
+
+            <div class="row">
+                @Html.Action("BaoCaoTaiNhieu", "Home")
+            </div>
+
+            <!--/ Content row end -->
+            @*<div class="general-btn text-center mt-4">
+                    <a class="btn btn-primary" href="news-left-sidebar.html">XEM TẤT CẢ</a>
+                </div>*@
+
+        </div>
+        <!--/ Container end -->
+    </section>
+
+
+  
+    <section class="subscribe no-padding">
+        <div class="container">
+            <div class="row">
+
+                <!-- Col end -->
+                <div class="col-lg-12">
+                    <div class="ts-newsletter row align-items-center">
+                        <div class="col-md-5 newsletter-introtext">
+                            <h4 class="mb-0">ĐÓNG GÓP Ý KIÉN</h4>
+
+                        </div>
+
+                        <div class="col-md-6 newsletter-form">
+                            <form action="/User/SendEmail" method="post">
+                                <div class="form-group">
+                                    <label for="newsletter-email" class="content-hidden">Newsletter Email</label>
+                                    <input type="text" name="message" id="newsletter-email" class="form-control form-control-lg" placeholder="Nhập nội dung..." autocomplete="off">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Newsletter end -->
+                </div><!-- Col end -->
+            </div><!-- Content row end -->
+        </div>
+        <!--/ Container end -->
+    </section>
+    <!--/ subscribe end -->
+
+
+
+    <footer id="footer" class="footer" style="background: #005180 ; color : #fff">
+        <div class="footer-main">
+            <div class="container">
+                <div class="row justify-content-between">
+                    <div class="col-lg-4 col-md-6 footer-widget footer-about">
+                        <h3 class="widget-title">VỀ CHÚNG TÔI</h3>
+                        <img loading="lazy" class="footer-logo" src="~/Content/images/logo.png" alt="Constra">
+                        <p>
+                            »  ExamSystem<br />
+                            »  Hệ thống quản lý đề kiểm tra cho trường THCS Phú Hoà<br />
+                            »  Mail: thanhhuyenvule1992@gmail.com<br />
+                            »  Sdt: 0988137637<br />
+
+
+                        </p>
+                        <div class="footer-social">
+                            <ul>
+                                <li>
+                                    <a href="https://facebook.com/themefisher" aria-label="Facebook">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://twitter.com/themefisher" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                                </li>
+                                <li>
+                                    <a href="https://instagram.com/themefisher" aria-label="Instagram">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                </li>
+                                <li><a href="https://github.com/themefisher" aria-label="Github"><i class="fab fa-github"></i></a></li>
+                            </ul>
+                        </div><!-- Footer social end -->
+                    </div><!-- Col end -->
+
+                    <div class="col-lg-4 col-md-6 footer-widget mt-5 mt-md-0">
+                        <h3 class="widget-title">GIỜ LÀM VIỆC</h3>
+                        <div class="working-hours">
+                            Mở cửa tất cả các ngày trong tuần
+                            <br>Thứ hai đến thứ bảy: <span>  7:00 - 21:00 </span>
+                            <br> Chủ nhật: <span>  7:00 - 17:00</span>
+
+                        </div>
+                    </div><!-- Col end -->
+
+                    <div class="col-lg-3 col-md-6 mt-5 mt-lg-0 footer-widget">
+                        <h3 class="widget-title">ĐỊA CHỈ</h3>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.799679711206!2d106.696049!3d10.9784877!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174d1af50e4d0f7%3A0xb20bbbbb430fa43d!2zVHLGsOG7nW5nIFRIQ1MgUGjDuiBIb8Og!5e0!3m2!1svi!2s!4v1715185601879!5m2!1svi!2s" width="350" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div><!-- Col end -->
+                </div><!-- Row end -->
+            </div><!-- Container end -->
+        </div><!-- Footer main end -->
+
+        <div class="copyright" style="background : #fff; color : #333">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="copyright-info text-center">
+                            <span class="spancp">
+                                Copyright &copy;
+                                <script>document.write(new Date().getFullYear())</script> - ExamSystem - Trường THCS Phú Hòa
+                            </span>
+                        </div>
+                    </div>
+
+
+
+                </div><!-- Row end -->
+
+                <div id="back-to-top" data-spy="affix" data-offset-top="10" class="back-to-top position-fixed" style="background: #005180; border-radius : 50%">
+                    <button class="btn btn-primary" title="Back to Top">
+                        <i class="fa fa-angle-double-up" style="color :#fff"></i>
+                    </button>
+                </div>
+
+            </div><!-- Container end -->
+        </div><!-- Copyright end -->
+    </footer><!-- Footer end -->
+    <!-- Javascript Files
+
+    ================================================== -->
+    <!-- initialize jQuery Library -->
+    <script src="~/Content/plugins/jQuery/jquery.min.js"></script>
+    <!-- Bootstrap jQuery -->
+    <script src="~/Content/plugins/bootstrap/bootstrap.min.js" defer></script>
+    <!-- Slick Carousel -->
+    <script src="~/Content/plugins/slick/slick.min.js"></script>
+    <script src="~/Content/plugins/slick/slick-animation.min.js"></script>
+    <!-- Color box -->
+    <script src="~/Content/plugins/colorbox/jquery.colorbox.js"></script>
+    <!-- shuffle -->
+    <script src="~/Content/plugins/shuffle/shuffle.min.js" defer></script>
+
+
+    <!-- Google Map API Key-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU" defer></script>
+    <!-- Google Map Plugin-->
+    <script src="~/Content/plugins/google-map/map.js" defer></script>
+
+    <!-- Template custom -->
+    <script src="~/Content/js/script.js"></script>
+
+
+
+    <style>
+        #af-preloader {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            background-color: #fff;
+            z-index: 99999999;
+            top: 0;
+            left: 0
+        }
+
+        .af-preloader-wrap {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%)
+        }
+
+        .af-sp {
+            width: 42px;
+            height: 42px;
+            clear: both;
+            margin: 20px auto
+        }
+
+        .af-sp-wave {
+            border-radius: 50%;
+            position: relative;
+            opacity: 1
+        }
+
+            .af-sp-wave:before, .af-sp-wave:after {
+                content: '';
+                border: 2px #33b5e5 solid;
+                border-radius: 50%;
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                left: 0
+            }
+
+            .af-sp-wave:before {
+                transform: scale(1,1);
+                opacity: 1;
+                -webkit-animation: spWaveBe .6s infinite linear;
+                animation: spWaveBe .6s infinite linear
+            }
+
+            .af-sp-wave:after {
+                transform: scale(0,0);
+                opacity: 0;
+                -webkit-animation: spWaveAf .6s infinite linear;
+                animation: spWaveAf .6s infinite linear
+            }
+
+        @@-webkit-keyframes spWaveAf {
+            from {
+                -webkit-transform: scale(.5,.5);
+                opacity: 0
+            }
+
+            to {
+                -webkit-transform: scale(1,1);
+                opacity: 1
+            }
+        }
+
+        @@keyframes spWaveAf {
+            from {
+                transform: scale(.5,.5);
+                opacity: 0
+            }
+
+            to {
+                transform: scale(1,1);
+                opacity: 1
+            }
+        }
+
+        @@-webkit-keyframes spWaveBe {
+            from {
+                -webkit-transform: scale(1,1);
+                opacity: 1
+            }
+
+            to {
+                -webkit-transform: scale(1.5,1.5);
+                opacity: 0
+            }
+        }
+
+        @@keyframes spWaveBe {
+            from {
+                -webkit-transform: scale(1,1);
+                opacity: 1
+            }
+
+            to {
+                -webkit-transform: scale(1.5,1.5);
+                opacity: 0
+            }
+        }
+    </style>
+    <!-- Messenger Plugin chat Code -->
+    <div id="fb-root"></div>
+
+    <!-- Your Plugin chat code -->
+    <div id="fb-customer-chat" class="fb-customerchat">
+    </div>
+
+    <script>
+        var chatbox = document.getElementById('fb-customer-chat');
+        chatbox.setAttribute("page_id", "118982414503924");
+        chatbox.setAttribute("attribution", "biz_inbox");
+    </script>
+
+    <!-- Your SDK code -->
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                xfbml: true,
+                version: 'v16.0'
+            });
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <script src="~/Scripts/Sticky.js"></script>
+</body>
+
+</html>

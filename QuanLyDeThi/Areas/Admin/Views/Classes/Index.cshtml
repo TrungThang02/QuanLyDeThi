@@ -1,0 +1,63 @@
+﻿@model IEnumerable<QuanLyDeThi.Models.Class>
+
+@{
+    ViewBag.Title = "Danh sách";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Danh sách</h2>
+
+<p>
+    <a href="@Url.Action("Create")" class="btn btn-primary">Tạo mới</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            <p>Tên lớp</p>
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClassName)
+            </td>
+            <td>
+                <a href="@Url.Action("Edit", new { id = item.ClassID })" class="btn btn-warning">Chỉnh sửa</a>
+
+                <a href="/Classes/Delete/@item.ClassID" class="btn btn-danger delete" data-id="@item.ClassID">Xóa</a>
+            </td>
+        </tr>
+    }
+
+</table>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+const btnDelete = document.querySelectorAll('.delete');
+
+    btnDelete.forEach(btn => {
+        btn.addEventListener('click', (event) => {
+            var id = btn.dataset.id;
+            event.preventDefault();
+
+            Swal.fire({
+                title: 'Bạn có chắc chắn muốn xóa ?',
+                text: "Nếu bạn xóa bạn không thể khôi phục lại!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText: 'Hủy',
+                confirmButtonText: 'Xóa'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Xóa thành công'
+                    )
+                    window.location.href = "/Classes/Delete/" + id;
+                }
+            })
+        });
+    });</script>
